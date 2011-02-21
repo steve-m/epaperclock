@@ -55,12 +55,11 @@ int main(void)
 #if 0
 	display_puts("MSP430", 0);
 	display_puts("123456", 1);
-#endif
 
 	display_init(1);
 	delay_ms(100);
 	display_update(1);
-
+#endif
 
 	/* enable falling edge interrupt for BUSY1 of the display, which
 	 * becomes low when the display content has been updated */

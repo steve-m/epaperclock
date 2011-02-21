@@ -80,7 +80,7 @@ void display_putc(uint8_t line, uint8_t pos, unsigned char c)
 {
 	uint8_t i, segment;
 	uint8_t diff = 0;
-	uint16_t font = row1_font[c - 32];
+	uint16_t font = row1_font[c - 48];
 	uint16_t mask = 1;
 
 	for (i = 0; i < 16; i++) {
@@ -133,9 +133,7 @@ void display_putint(uint32_t i, uint8_t line, uint8_t space)
 void display_init(uint8_t update)
 {
 	P1OUT |= BIT3;
-	delay_ms(10);
 	P1OUT &= ~BIT3;
-	delay_ms(10);
 	P1OUT |= BIT3;
 
 	spi_write_32(0xf8000000);
