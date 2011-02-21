@@ -1,0 +1,18 @@
+MSP430 e-paper clock with Motorola F3 display
+=============================================
+
+More information:
+http://wiki.steve-m.de/doku.php/epaper_display
+
+License: GPLv2+
+
+Notes:
+
+* The code in master doesn't actually build for the MSP430G2231 target, since
+  its larger than the 2kb. I didn't want to put the stripped down version in
+  master, thus you can find it in the 'stripped'-branch.
+
+* Porting the code to other microcontrollers should be possible quite easily,
+  since despite from the interrupt/timer/SPI functions there's no other
+  dependency on the MSP430 peripherals.
+  Please note the comments at the end of /src/segments.h for this purpose.
