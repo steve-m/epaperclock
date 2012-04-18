@@ -1,7 +1,7 @@
 TARGET=main
 
 CC=msp430-gcc
-CFLAGS=-Wall -mmcu=msp430x2231 # -Wl,-Map=mapfile.map
+CFLAGS=-Wall -mmcu=msp430g2452 # -Wl,-Map=mapfile.map
 
 OBJS=main.o spi.o display.o delay.o
 

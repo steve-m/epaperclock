@@ -17,7 +17,8 @@
  *
  */
 
-#include <io.h>
+#include <msp430.h>
+#include <stdint.h>
 #include "spi.h"
 #include "display.h"
 #include "delay.h"
@@ -30,11 +31,7 @@ void display_set_seg(uint8_t segment, uint8_t on)
 {
 	uint8_t bit = (segment & 0x1f);
 	uint8_t i = ((segment >> 5) & 0x07);
-	uint32_t mask = 1;
-
-	/* for some strange reason msp430-gcc doesn't do left-shifts > 12 */
-	while (bit--)
-		mask <<= 1;
+	uint32_t mask = (1 << bit);
 
 	if (on)
 		display_buffer[i] |= mask;

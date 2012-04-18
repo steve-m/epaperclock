@@ -17,8 +17,8 @@
  *
  */
 
-#include <io.h>
-#include <signal.h>
+#include <msp430.h>
+#include <stdint.h>
 #include "spi.h"
 #include "delay.h"
 #include "display.h"
@@ -60,7 +60,6 @@ int main(void)
 	display_init(1);
 	delay_ms(100);
 	display_update(1);
-
 
 	/* enable falling edge interrupt for BUSY1 of the display, which
 	 * becomes low when the display content has been updated */
@@ -109,13 +108,12 @@ void handle_clock(void)
 	display_update(1);
 }
 
-interrupt(TIMERA0_VECTOR) timer_a0_isr(void)
+void __attribute__((interrupt (TIMER0_A0_VECTOR))) timer_a0_isr(void)
 {
 	if (j == 3) {
 		P1DIR = DISPLAY_32K | DISPLAY_SUPPLY | DISPLAY_RESET | SCLK | SDO | CS;
 		P1OUT |= DISPLAY_SUPPLY;
 		P1SEL |= DISPLAY_32K;
-		
 		handle_clock();
 		j = 0;
 	} else {
@@ -124,7 +122,7 @@ interrupt(TIMERA0_VECTOR) timer_a0_isr(void)
 }
 
 /* our DISPLAY_BUSY isr */
-interrupt(PORT1_VECTOR) port1_isr(void)
+void __attribute__((interrupt (PORT1_VECTOR))) port1_isr(void)
 {
 	/* turn off display clock */
 	P1SEL &= ~(DISPLAY_32K);

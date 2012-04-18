@@ -1,6 +1,6 @@
 /* simple, uncalibrated delay function */
 
-#include <io.h>
+#include <stdint.h>
 #include "delay.h"
 
 void delay_ms(unsigned int i)
