@@ -108,7 +108,12 @@ void handle_clock(void)
 	display_update(1);
 }
 
+#ifdef __GNUC__
 void __attribute__((interrupt (TIMER0_A0_VECTOR))) timer_a0_isr(void)
+#else
+#pragma vector=TIMER0_A0_VECTOR
+__interrupt void TIMER0_A0_ISR (void)
+#endif
 {
 	if (j == 3) {
 		P1DIR = DISPLAY_32K | DISPLAY_SUPPLY | DISPLAY_RESET | SCLK | SDO | CS;
@@ -122,7 +127,12 @@ void __attribute__((interrupt (TIMER0_A0_VECTOR))) timer_a0_isr(void)
 }
 
 /* our DISPLAY_BUSY isr */
+#ifdef __GNUC__
 void __attribute__((interrupt (PORT1_VECTOR))) port1_isr(void)
+#else
+#pragma vector=PORT1_VECTOR
+__interrupt void PORT1_ISR (void)
+#endif
 {
 	/* turn off display clock */
 	P1SEL &= ~(DISPLAY_32K);

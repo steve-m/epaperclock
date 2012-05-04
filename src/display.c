@@ -31,7 +31,7 @@ void display_set_seg(uint8_t segment, uint8_t on)
 {
 	uint8_t bit = (segment & 0x1f);
 	uint8_t i = ((segment >> 5) & 0x07);
-	uint32_t mask = (1 << bit);
+	uint32_t mask = (uint32_t)1 << bit;
 
 	if (on)
 		display_buffer[i] |= mask;
