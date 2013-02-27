@@ -65,7 +65,7 @@
  * the combined G and H segments (only if possible).
  */
 
-
+#ifndef NODATA
 /* ASCII font, starting at 0x20 */
 const uint16_t row1_font[] = {	/* ZYPNMLKJHGFEDCBA	digit:	*/
 	0x0000,			/* 0000000000000000	space	*/
@@ -133,7 +133,7 @@ const uint16_t row1_font[] = {	/* ZYPNMLKJHGFEDCBA	digit:	*/
 	0x0023,			/* 0000000000100011	^	*/
 	0x0008,			/* 0000000000001000	_	*/
 };
-
+#endif
 /*
  * Text Row 1
  */
@@ -382,8 +382,8 @@ const uint16_t row1_font[] = {	/* ZYPNMLKJHGFEDCBA	digit:	*/
  * If somebody wants to port that to a microcontroller with an Harvard-
  * architecture, like the AVR, one should store this in flash (e.g. using the
  * PROGMEM-macro in avr-gcc), otherwise this will bloat the SRAM */
-
-const uint8_t segments_row1[] = {
+#ifndef NODATA
+extern const uint8_t segments_row1[] = {
 	R1C1_SEG_A, R1C1_SEG_B, R1C1_SEG_C, R1C1_SEG_D, R1C1_SEG_E,
 	R1C1_SEG_F, R1C1_SEG_G, R1C1_SEG_H, R1C1_SEG_J, R1C1_SEG_K,
 	R1C1_SEG_L, R1C1_SEG_M, R1C1_SEG_N, R1C1_SEG_P,
@@ -404,7 +404,7 @@ const uint8_t segments_row1[] = {
 	R1C6_SEG_L, R1C6_SEG_M, R1C6_SEG_N, R1C6_SEG_P,
 };
 
-const uint8_t segments_row2[] = {
+extern const uint8_t segments_row2[] = {
 	R2C1_SEG_A, R2C1_SEG_B, R2C1_SEG_C, R2C1_SEG_D,
 	R2C1_SEG_E, R2C1_SEG_F, R2C1_SEG_G, R2C1_SEG_H,
 	R2C2_SEG_A, R2C2_SEG_B, R2C2_SEG_C, R2C2_SEG_D,
@@ -418,5 +418,5 @@ const uint8_t segments_row2[] = {
 	R2C6_SEG_A, R2C6_SEG_B, R2C6_SEG_C, R2C6_SEG_D,
 	R2C6_SEG_E, R2C6_SEG_F, R2C6_SEG_G, R2C6_SEG_H,
 };
-
+#endif
 #endif /* SEGMENTS_H */

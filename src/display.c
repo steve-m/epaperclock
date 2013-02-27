@@ -122,8 +122,8 @@ void display_putint(uint32_t i, uint8_t line, uint8_t space)
 	} while (i);
 
 	/* hack for the clock: fill the unused segments to display e.g. 00:09 */
-	while (pos)
-		display_putc(line, pos--, '0');
+//	while (pos)
+//		display_putc(line, pos--, '0');
 
 }
 
